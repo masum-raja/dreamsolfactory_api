@@ -6,11 +6,14 @@ const cookieParser = require("cookie-parser");
 const { authVerify } = require("./middlewares");
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
+const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 
 connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 app.use("/auth", authRoutes);
 
